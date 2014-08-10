@@ -40,3 +40,9 @@ angular.module('starter', ['ionic'])
   // Send to login if the URL was not found
   $urlRouterProvider.otherwise('/login');
 })
+
+.controller('homeCtrl', function() {
+})
+
+.controller('loginCtrl', function() {
+})

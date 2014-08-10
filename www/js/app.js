@@ -17,3 +17,26 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+.config(function($stateProvider, $urlRouterProvider){
+  $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'home.html',
+      controller: 'homeCtrl',
+      data: {
+        authenticate: true
+      }
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'login.html',
+      controller: 'loginCtrl',
+      data: {
+        authenticate: false
+      }
+    });
+    
+  // Send to login if the URL was not found
+  $urlRouterProvider.otherwise('/login');
+})

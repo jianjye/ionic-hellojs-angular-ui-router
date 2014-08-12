@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state, userService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -14,6 +14,15 @@ angular.module('starter', ['ionic'])
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
+    }
+  });
+
+  // UI Router Authentication Check
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    if (toState.data.authenticate && !userService.isLoggedIn()){
+      // User isn’t authenticated
+      $state.transitionTo("login");
+      event.preventDefault(); 
     }
   });
 })

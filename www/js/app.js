@@ -50,8 +50,6 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/login');
 })
 
-.controller('homeCtrl', function() {
-})
 .factory('userService', ['$rootScope', '$state', function($rootScope, $state) {
 
   // Hello.js Functions
@@ -87,5 +85,10 @@ angular.module('starter', ['ionic'])
   return service;
 }])
 
-.controller('loginCtrl', function() {
-})
+.controller('homeCtrl', ['$scope', 'userService',function($scope, userService) {
+  $scope.logout = userService.logout;
+}])
+
+.controller('loginCtrl', ['$scope', 'userService', function($scope, userService) {
+  $scope.login = userService.login;
+}]);

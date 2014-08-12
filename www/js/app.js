@@ -52,6 +52,40 @@ angular.module('starter', ['ionic'])
 
 .controller('homeCtrl', function() {
 })
+.factory('userService', ['$rootScope', '$state', function($rootScope, $state) {
+
+  // Hello.js Functions
+  hello.init({ 
+    facebook : '354940007993444'
+  });
+
+  var service = {
+    isLoggedIn: function() {
+      return $rootScope.userStatus;
+    },
+    login: function() {
+      hello('facebook').login( function() {
+        hello( 'facebook' ).api( '/me' ).success(function(json) {
+          console.log(json);
+          $rootScope.user = json;
+          $rootScope.$apply($rootScope.user);
+          $rootScope.userStatus = true;
+        });
+      });
+      
+      $state.go('home');
+    },
+    logout: function() {
+      hello('facebook').logout( function() {
+        $rootScope.userStatus = false;
+        $rootScope.user = null;
+      });
+      $state.go('login');
+    }
+  }
+
+  return service;
+}])
 
 .controller('loginCtrl', function() {
 })

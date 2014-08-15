@@ -68,17 +68,18 @@ angular.module('starter', ['ionic'])
           $rootScope.user = json;
           $rootScope.$apply($rootScope.user);
           $rootScope.userStatus = true;
+
+          $state.go('home');
         });
-      });
-      
-      $state.go('home');
+      });     
     },
     logout: function() {
       hello('facebook').logout( function() {
         $rootScope.userStatus = false;
         $rootScope.user = null;
+
+         $state.go('login');
       });
-      $state.go('login');
     }
   }
 

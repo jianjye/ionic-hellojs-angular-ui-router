@@ -54,8 +54,12 @@ angular.module('starter', ['ionic'])
 
   // Hello.js Functions
   hello.init({ 
-    facebook : '354940007993444'
-  });
+    // replace this with your own Facebook App ID
+    facebook : '1234567890'
+  }, {
+    redirect_uri:'https://www.facebook.com/connect/login_success.html'
+    }
+  );
 
   var service = {
     isLoggedIn: function() {

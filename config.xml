@@ -16,4 +16,6 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <access origin="*" />
+  <gap:plugin name="org.apache.cordova.inappbrowser" />
 </widget>
